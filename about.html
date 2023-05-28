@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт Резедента Kiber one</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__top-wrapper">
+            <div class="header__top conteiner">
+                <img src="images/logo.png" alt="" class="header__logo">
+                <div class="header__title">Сайт резидента<br> первой международной школы<br> программистов Kiberone.
+                </div>
+            </div>
+        </div>
+        <div class="header__bottom">
+            <nav class="header__nav">
+                <a href="index.html" class="header__nav-item">Главная</a>
+                <a href="modules.html" class="header__nav-item">Модули</a>
+                <a href="about.html" class="header__nav-item">Об авторе</a>
+                <a href="#" class="header__nav-item">Контакты</a>
+
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="main__wrapper">
+            <div class="main__card container">
+                <h1>Об авторе</h1>
+                <!--НАЧАЛО блока с картинкой -->
+                <div class="content-half">
+                    <div class="content-half__img">
+                        <img src="images/pic-ac-1.png">
+                    </div>
+                    <div class="conteint-half__data">
+                        <table border="1px solid black">
+                            <tr>
+                                <td>Имя</td>
+                                <td>Кирилл</td>
+                            </tr>
+                            <tr>
+                                <td>Дата Рождения</td>
+                                <td>06.03.2009</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!--КОНЕЦ блока с картинкой-->
+
+                <h2>Форма обратной связи</h2>
+                <p class="notice">Если хотите связатся с автором сайта, заполните форму обратной сязи и ожидайте ответа.</p>
+<!-- Начало формы -->
+                <div class="form__item">
+                    <span for="name">Имя:</span>
+                    <input type="text" name="name" required>
+                    <br>
+                    <span for="phone">Номер телефона:</span>
+                    <input type="tel" name="phone" required>
+
+                </div>
+                <div class="checkbox__item">
+                    <span>Что предпочитаете?</span><br>
+                    <input type="checkbox">
+                    <span class="checkbox__item">Яблоки</span>
+                    <input type="checkbox">
+                    <span class="checkbox__item">Помидоры</span>
+                </div>
+                <div class="radio">
+                    <span>Ваш возраст:</span>
+                        <div class="radio__item">
+                            <input type="radio" name="age">
+                            <span>6-8</span>
+                        </div>
+                        <div class="radio__item">
+                            <input type="radio" name="age">
+                            <span>9-18</span>
+                        </div>
+                        <div class="radio__item">
+                            <input type="radio" name="age">
+                            <span>18+</span>
+                        </div>
+                </div>
+<!-- Конец формы -->
+            </div>
+        </div>
+        </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer__container conteiner">
+            <div class="footer__data">
+                <div class="footer__data-title">
+                    Контакты
+                </div>
+                <a class="footer__data-link" href="">+7 800 555 35 35
+                    <br><iframe src="https://www.google.com/maps/d/u/0/embed?mid=18B1XOZrc0E9PWIvxOEyBqw1pOHQ9qKE&ehbc=2E312F" width="640" height="480"></iframe>
+                </a>
+            </div>
+            <div class="footer__map">
+
+            </div>
+        </div>
+
+    </footer>
+</body>
+
+</html>

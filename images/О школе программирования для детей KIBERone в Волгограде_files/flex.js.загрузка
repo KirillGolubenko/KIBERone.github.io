@@ -1,0 +1,219 @@
+var Flex = {
+	targets: [],
+	wrap_classname: 'uss-flex-items',
+	exclude_by_parent: ['noflex'],
+	other_plugins: ['mCustomScrollbar', 'slick-slider'],
+	min_element_margin: 10,
+	target_with_parent: ['.flex .catalog_menu', '.flex .uss_eshop_menu', '.flex .items', '.content .uss_shop_blocks_view', '.content .uss_eshop_sameproducts', '.content .uss_shop_block_cat.uss_shop_cats', '.flex .uss_images_block', '.content .uss_catalog_block_cat', '.flex.items', '.flex .lastEshopPosItems', '.uss_photoalbums_foto_box', '.cyber-block.block10 .uss_images_block'],
+	target_with_out_parent: ['.flex .news_block_item'],
+	get_random_class: function() {
+		var num = Math.random() + '';
+		num = num.replace('0.', '');
+		return 'items-' + num;
+	},
+	detect_targets: function() {
+		if (Flex.target_with_parent.length !== 0) {
+			for (var i = 0; i < Flex.target_with_parent.length; i++) {
+				_elem = $(Flex.target_with_parent[i]);
+				if ($(_elem).children('*').length > 0 && !Flex.find_class_in_parents(Flex.target_with_parent[i])) {
+					for (var zi = 0; zi < _elem.length; zi++) {
+						__elem = $(_elem[zi]);
+						r_class = Flex.get_random_class();
+						__elem.addClass(r_class).addClass(Flex.wrap_classname);
+						Flex.targets.push('.' + r_class);
+					}
+				}
+			}
+		}
+		if (Flex.target_with_out_parent.length !== 0) {
+			$.each(Flex.target_with_out_parent, function(index, element) {
+				if ($(element).length !== 0) {
+					$(element).each(function(el_index, target) {
+						if (!$(target).parent('div').hasClass('items')) {
+							r_class = Flex.get_random_class();
+							_container = $('<div class="items"></div>');
+							$(target).siblings(element).appendTo(_container);
+							$(_container).insertAfter($(target));
+							$(target).prependTo(_container);
+							$(_container).addClass(r_class).addClass(Flex.wrap_classname);
+							Flex.targets.push('.' + r_class);
+						}
+					});
+				}
+			});
+		}
+	},
+	run: function() {
+		if (Flex.targets.length !== 0) {
+			for (var i = 0; i < Flex.targets.length; i++) {
+				Flex.calculate(Flex.targets[i]);
+			}
+		}
+	},
+	resizer: function() {
+		$(window).resize(function() {
+			Flex.run();
+		});
+	},
+	calculate: function(target_parent) {
+		box = $(target_parent);
+		$(box).removeClass('one-in-row');
+		box_width = ~~($(target_parent).outerWidth());
+		elements = $(target_parent).children('*:not(.uss_cleaner):not(.photo_page_navitem):not(.uss_shop_newbies_title)');
+		elements_lenght = $(target_parent).children('*:not(.uss_cleaner):not(.photo_page_navitem):not(.uss_shop_newbies_title)').length;
+		element_width = ~~($(target_parent).children('*:not(.uss_cleaner):not(.photo_page_navitem):not(.uss_shop_newbies_title)').eq(0).outerWidth());
+		max_elems_in_row = ~~((box_width + Flex.min_element_margin) / (element_width + Flex.min_element_margin));
+		box_width = ~~(box_width - max_elems_in_row);
+		elements_in_row = ~~(max_elems_in_row);
+		var margin_for_row = ~~((box_width - (elements_in_row * element_width)) / (elements_in_row - 1));
+		var one_row = function() {
+			// кол-во элементов меньше чем может поместиться в строку.
+			return box_width - (elements_lenght * Flex.min_element_margin) >= (elements_lenght * element_width) ? true : false;
+		};
+		var small_margin = false;
+		var big_margin = function() {
+			return margin_for_row > element_width / 3 ? true : false;
+		};
+		var one_in_row = function() {
+			return max_elems_in_row === 1 ? true : false;
+		};
+		var last_in_row = function() {
+			for (var z = 0; z < elements.length; z++) {
+				_el = $($(elements)[z]);
+				if ((z + 1) % elements_in_row === 0) {
+					_el.css({
+						'margin-right': ~~(margin_right_last),
+						'margin-left': ~~(margin_left_last),
+					});
+				} else {
+					_el.css({
+						'margin-right': ~~(margin_right),
+						'margin-left': ~~(margin_left),
+					});
+				}
+			}
+		};
+		var last_in_row_big_margin = function() {
+			for (var z = 0; z < elements.length; z++) {
+				_el = $($(elements)[z]);
+				if ((z + 1) % elements_in_row === 0) {
+					_el.css({
+						'margin-right': ~~(margin_right_last),
+						'margin-left': ~~(margin_left_last),
+					});
+				} else if ((z) % elements_in_row === 0) {
+					_el.css({
+						'margin-right': ~~(0),
+						'margin-left': ~~(margin_left),
+					});
+				} else {
+					_el.css({
+						'margin-right': ~~(margin_right),
+						'margin-left': ~~(margin_left),
+					});
+				}
+			}
+		};
+		var last_elemenet = function() {
+			$(elements).css({
+				'margin-right': ~~(margin_right),
+				'margin-left': ~~(margin_left),
+			}).eq(elements_lenght - 1).css({
+				'margin-right': ~~(margin_right_last),
+				'margin-left': ~~(margin_left_last),
+			});
+		};
+		var last_elemenet_big_margin = function() {
+			var _elements = $(elements);
+			_elements.css({
+				'margin-left': ~~(0),
+				'margin-right': ~~(margin_right),
+			});
+			_elements.eq(0).css({
+				'margin-left': ~~(margin_left),
+				'margin-right': ~~(margin_right),
+			});
+		};
+		var margin_left, margin_right, margin_left_last, margin_right_last;
+		$(box).removeClass('bigmargin');
+		if (one_row()) {
+			// все элементы влезают в 1 строку
+			margin_for_row = ~~((box_width - (elements_lenght * element_width)) / (elements_lenght - 1));
+			if (one_in_row()) {
+				$(box).addClass('one-in-row');
+				margin_for_row = ~~(box_width - element_width);
+				margin_left = margin_for_row / 2;
+				margin_right = margin_for_row / 2;
+				margin_left_last = margin_for_row / 2;
+				margin_right_last = margin_for_row / 2;
+				last_in_row();
+			} else {
+				margin_left = 0;
+				margin_right = margin_for_row;
+				margin_left_last = 0;
+				margin_right_last = 0;
+				last_in_row();
+				if (big_margin()) {
+					margin_for_row = ~~((box_width - (max_elems_in_row * element_width)) / (max_elems_in_row + 1));
+					margin_left = 0;
+					margin_right = margin_for_row;
+					margin_left_last = 0;
+					margin_right_last = margin_for_row;
+					last_elemenet_big_margin();
+				}
+			}
+		} else {
+			// все элементы НЕ влезают в 1 строку
+			if (one_in_row()) {
+				$(box).addClass('one-in-row');
+				margin_for_row = ~~(box_width - element_width);
+				margin_left = margin_for_row / 2;
+				margin_right = margin_for_row / 2;
+				margin_left_last = margin_for_row / 2;
+				margin_right_last = margin_for_row / 2;
+				last_in_row();
+			} else if (big_margin()) {
+				$(box).addClass('bigmargin');
+				margin_fix = 11 * (elements_in_row + 1);
+				margin_for_row = ~~((box_width - (elements_in_row * element_width)) / (elements_in_row + 1));
+				margin_left = margin_for_row;
+				margin_right = 0;
+				margin_left_last = margin_for_row;
+				margin_right_last = margin_for_row;
+				if (max_elems_in_row > 2) {
+					last_in_row_big_margin();
+				} else {
+					last_in_row();
+				}
+			} else {
+				margin_left = 0;
+				margin_right = margin_for_row;
+				margin_left_last = 0;
+				margin_right_last = 0;
+				last_in_row();
+			}
+		}
+	},
+	find_class_in_parents: function(target) {
+		find = false;
+		$.each($(target).parents(), function(index, val) {
+			$.each(Flex.exclude_by_parent, function(index2, val2) {
+				if ($(val).hasClass(val2)) {
+					find = true;
+				}
+			});
+		});
+		return find;
+	},
+	init: function(type) {
+		Flex.exclude_by_parent = Flex.exclude_by_parent.concat(Flex.other_plugins);
+		Flex.detect_targets();
+		Flex.run();
+		Flex.resizer();
+	},
+};
+jQuery(document).ready(function($) {
+	$(window).load(function() {
+		Flex.init();
+	});
+});

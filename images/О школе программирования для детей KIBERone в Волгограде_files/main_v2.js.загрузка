@@ -1,0 +1,731 @@
+$(document)
+	.ready(function () {
+
+		$('.mp_block5 .items').slick({
+			slidesToShow: 3,
+			slidesToScroll: 3,
+			arrows: true,
+			dots: false,
+			autoplay: false,
+			autoplaySpeed: 5000,
+	          responsive: [
+	            {
+	              breakpoint: 768,
+	              settings: {
+	                slidesToShow: 2,
+	                slidesToScroll: 2
+	              }
+	            },
+	            {
+	              breakpoint: 480,
+	              settings: {
+	                slidesToShow: 1,
+	                slidesToScroll: 1
+	              }
+	            }
+	          ]
+		});
+
+		$('.mp_block15 .items').slick({
+			slidesToShow: 3,
+			slidesToScroll: 3,
+			arrows: true,
+			dots: false,
+			autoplay: false,
+			autoplaySpeed: 5000,
+	          responsive: [
+	            {
+	              breakpoint: 768,
+	              settings: {
+	                slidesToShow: 2,
+	                slidesToScroll: 2
+	              }
+	            },
+	            {
+	              breakpoint: 480,
+	              settings: {
+	                slidesToShow: 1,
+	                slidesToScroll: 1
+	              }
+	            }
+	          ]
+		});
+
+		$('.mp_block16 .carousel').slick({
+			slidesToShow: 6,
+			slidesToScroll: 6,
+			arrows: true,
+			dots: false,
+			autoplay: false,
+			autoplaySpeed: 5000,
+	          responsive: [
+	            {
+	              breakpoint: 768,
+	              settings: {
+	                slidesToShow: 3,
+	                slidesToScroll: 3
+	              }
+	            },
+	            {
+	              breakpoint: 480,
+	              settings: {
+	                slidesToShow: 1,
+	                slidesToScroll: 1
+	              }
+	            }
+	          ]
+		});
+
+		$('.mp_block13 .uss_faq_question').on('click', function(){
+			$(this).closest('.uss_faq_item').toggleClass('active');
+			$(this).closest('.uss_faq_item').find('.uss_faq_reply').slideToggle(250);
+		});
+
+		$('.lh_burger').on('click', function(){
+			$(this).toggleClass('active');
+			$('body').toggleClass('opened_menu');
+			$('.lh_menu').fadeToggle(250, function(){
+				$(this).toggleClass('active');
+				if($(this).css('display') === 'none'){
+					$(this).removeAttr('style');
+				}
+			});
+		});
+
+		$('body').live('click', function(e) {
+	        if ($(e.target).closest('.lh_menu ul').length || $(e.target).closest('.lh_burger').length) {
+	            
+	        } else {
+	            if($('.lh_burger').hasClass('active')) {
+	                $('.lh_burger').removeClass('active');
+	                $('body').removeClass('opened_menu');
+					$('.lh_menu').fadeOut(250, function(){
+						$(this).removeClass('active');
+						if($(this).css('display') === 'none'){
+							$(this).removeAttr('style');
+						}
+					});
+	            }
+	        }
+	    });
+
+		$('.vacancies_page .uss_section_content p.btn a, .vac_gallery .btn a').click(function() {
+			$('html, body').animate({
+				scrollTop: $('.vt_form .fc_form_tml').offset().top - 120
+			}, 500);
+			return false;
+		});
+
+		$('.modules_block_1 p.btn a').click(function() {
+			$('html, body').animate({
+				scrollTop: $('.module_page .uss_catalog_block_cat').offset().top - 120
+			}, 500);
+			return false;
+		});
+
+		$('.modules_view_all a').on('click', function(){
+			$(this).closest('.l_content').find('.uss_catalog_block_cat').toggleClass('all');
+			$(this).toggleClass('active');
+			return false;
+		});
+
+
+
+		// Модальное окно
+		$('.show-regions').on('click', function (event) {
+			var popup = $('.popup-change-region');
+			if(popup.length){
+				popup.fadeIn();
+				return false;
+			}
+		});
+		$('.modal-window .close').on('click', function () {
+			$(this).closest('.modal-window').fadeOut();
+		});
+
+		var top_height = $('.h_nav_top')
+			.outerHeight();
+		var mobiled;
+		// Модальное окно
+		$('.invitation_btn')
+			.click(function (event) {
+				$('.popup')
+					.fadeIn();
+				return false;
+			});
+		$('.cyber-block.block16 p.btn a, .cyber-block.block1 a.btn')
+			.click(function (event) {
+				$('.popup_holiday')
+					.fadeIn();
+				return false;
+			});
+		$('.popup .close')
+			.click(function (event) {
+				$('.popup')
+					.fadeOut();
+			});
+		$('.popup2 .close')
+			.click(function (event) {
+				$('.popup2')
+					.fadeOut();
+			});
+		$('body')
+			.click(function (event) {
+				if ($('.popup')
+					.is(':visible')) {
+					if (!$(event.target)
+						.hasClass('popup_inner') && $(event.target)
+						.closest('.popup_inner')
+						.length == 0 && !$(event.target)
+						.hasClass('invitation_btn') && !$(event.target)
+						.closest('div').hasClass('jq-selectbox__dropdown')) {
+						$('.popup')
+							.fadeOut();
+					}
+				}
+				if ($('.popup2')
+					.is(':visible')) {
+					if (!$(event.target)
+						.hasClass('popup_inner') && $(event.target)
+						.closest('.popup_inner')
+						.length == 0 && !$(event.target)
+						.hasClass('invitation_btn')) {
+						$('.popup2')
+							.fadeOut();
+					}
+				}
+			});
+		// --------------------------------------------------
+		function anchor(className) {
+			var $root = $('html, body');
+			$('a' + className)
+				.click(function () {
+					$root.animate({
+						scrollTop: $($.attr(this, 'href'))
+							.offset()
+							.top - 68
+					}, 500);
+					if ($('body')
+						.width() <= 720) {
+						$('.menu ul')
+							.hide();
+					}
+					return false;
+				});
+		}
+		anchor('.anchor');
+		$('.burger')
+			.click(function (e) {
+				$('.menu ul')
+					.toggle();
+			});
+		$('.header .form_opener')
+			.click(function (event) {
+				$(this)
+					.siblings('.form')
+					.show();
+				$(this)
+					.hide();
+			});
+		var slider1_options = {
+			autoplay: true,
+			autoplaySpeed: 5000,
+			dots: true,
+			infinite: true,
+			speed: 300,
+			slidesToShow: 1,
+			arrows: true
+		};
+		var slider2_options = {
+			dots: true,
+			infinite: true,
+			speed: 300,
+			arrows: true,
+			slidesPerRow: 2,
+			rows: 2
+		};
+		var slider3_options = {
+			dots: true,
+			infinite: true,
+			speed: 300,
+			arrows: true,
+			slidesToShow: 4,
+			slidesToScroll: 4
+		};
+		function mobilezed() {
+			// Функция запускается на мобильных устройствах
+			window_width = $(window)
+				.width();
+			if (window_width < 768) {
+				mobiled = true;
+				slider1_options = {
+					autoplay: true,
+					autoplaySpeed: 5000,
+					dots: true,
+					infinite: true,
+					speed: 300,
+					slidesToShow: 1,
+					arrows: true,
+					slidesPerRow: 1,
+					rows: 1
+				};
+				slider3_options = {
+					dots: true,
+					arrows: true,
+					infinite: true,
+					speed: 300,
+					slidesToShow: 1,
+					slidesPerRow: 1,
+					rows: 1
+				};
+				slider2_options = {
+					dots: false,
+					arrows: true,
+					infinite: true,
+					speed: 300,
+					slidesToShow: 1,
+					slidesPerRow: 1,
+					rows: 1
+				};
+			} else {}
+		}
+		mobilezed();
+		mobileMenu();
+		$(window)
+			.on('resize', function (e) {
+				if (mobiled === false) {
+					mobilezed();
+				}
+				mobileMenu();
+			});
+		$('.slider1 .slides')
+			.slick(slider1_options);
+		$('.slider2 .slides')
+			.slick(slider2_options);
+		$('.slider3 .slides')
+			.slick(slider3_options);
+		$('.partners .carousel')
+			.slick({
+				dots: false,
+				arrows: true,
+				infinite: true,
+				speed: 300,
+				slidesToShow: 6,
+				touchMove: false,
+				responsive: [{
+					breakpoint: 900,
+					settings: {
+						slidesToShow: 5
+					}
+				}, {
+					breakpoint: 768,
+					settings: {
+						slidesToShow: 4
+					}
+				}, {
+					breakpoint: 640,
+					settings: {
+						slidesToShow: 3
+					}
+				}, {
+					breakpoint: 500,
+					settings: {
+						slidesToShow: 2
+					}
+				}]
+			});
+		$(window)
+			.scroll(function (e) {
+				if ($(window)
+					.scrollTop() >= top_height) {
+					if (!$('.h_nav_top')
+						.hasClass('top_limited')) {
+						$('.h_nav_top')
+							.addClass('top_limited');
+					}
+				} else {
+					$('.h_nav_top')
+						.removeClass('top_limited');
+				}
+			});
+		$('.reg-menu__region span')
+			.click(function () {
+				$('.overlay')
+					.fadeIn(250);
+			});
+		$('.kiber-block.block7 a.button')
+			.click(function () {
+				$('.overlay, .popup-window')
+					.fadeIn(250);
+				return false;
+			});
+		$('.popup-window__close, .overlay')
+			.click(function () {
+				$('.overlay, .popup-window')
+					.fadeOut(250);
+			});
+		$('#regions')
+			.on('click', '.close, .turn', function () {
+				$('.overlay')
+					.fadeOut(250);
+			});
+		$('.city select')
+			.styler();
+		$('.city select')
+			.change(function (event) {
+				switch ($(this)
+					.val()) {
+					case 'abk':
+						document.location.href = 'http://abakan.kiber-one.com';
+						break;
+					case 'chel':
+						document.location.href = 'http://chelyabinsk.kiber-one.com/';
+						break;
+					default:
+						document.location.href = '/skoro-otkrytie/';
+				}
+			});
+		/*first = $.cookie('first');
+		if (first == undefined) {
+			setTimeout(isFirst, 180);
+			$.cookie('first', '1', {
+				expires: 5,
+				path: '/',
+				domain: '.kiber-one.com'
+			});
+		}*/
+		// redyUSSfoto($(".awards a.enlarge_image_inside"), true, "fotoalbum");
+		redyUSSfoto($(".awards a.enlarge_image_inside"), false, "eshop");
+		$('.awards .items')
+			.slick({
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+				dots: true,
+				touchMove: false,
+				autoplay: true,
+				autoplaySpeed: 4500,
+				infinite: true,
+				centerMode: true,
+				variableWidth: true,
+			})
+		// $('.info_block-2 .left .image-wrap .image-bg')
+		// 	.click(function (e) {
+		// 		e.preventDefault();
+		// 		$('.video-modal')
+		// 			.toggle();
+		// 		return false;
+		// 	});
+		// $('.modal')
+		// 	.click(function (e) {
+		// 		if (/modal/.test(e.target.className)) {
+		// 			$('.modal')
+		// 				.hide();
+		// 		}
+		// 	});
+		// $('.modal .close').click(function(event) {
+		// 	$('.modal').hide();
+		// });
+		// $('.info_block-2 .right .h3').click(function(event) {
+		// 	if ($(window).width() <= 760){
+		// 		$('.modal').toggle();
+		// 	}
+		// });
+
+		$('.map-block a.btn').on('click', function(){
+			$('.country_modal').addClass('open');
+			return false;
+		});
+
+		$('.country_list span').on('click', function(){
+			$(this).closest('.country_list').find('span').removeClass('active');
+			$(this).addClass('active');
+
+			var id = $(this).data('id');
+			$('.city_list .city_list_item').removeClass('active');
+			$('.city_list .city_list_item.country_' + id).addClass('active');
+		});
+
+		$('.country_modal_close').on('click', function(){
+			$('.country_modal').removeClass('open');
+		});
+
+		$('.start_page .bl1_btn a').on('click', function(){
+			$('.start_page .block1').fadeOut(250);
+			$('.start_page .block2').fadeIn(250);
+			return false;
+		});
+
+		$('.lang-select-box .dropdown-opener').on('click', function(){
+			$(this).toggleClass('active');
+			$(this).closest('.lang-select-box').find('.dropdown').slideToggle(250);
+		});
+
+		$('.lang-select-box .selected-wrap').on('click', function(){
+			$('.lang-select-box .dropdown-opener').trigger('click');
+		});
+		
+		//Загрузка Goole карты
+		//initMap();
+
+	});
+function isFirst() {
+	var p_form = '<div id="CityIs" class="modal active"><div class="close"></div>';
+	p_form += '<div class="title">Ваш город ' + $(".reg-menu .reg-menu__region span")
+		.text() + '?</div>';
+	p_form += '<div class="btn_wrap">';
+	p_form += '<div class="btn"><a onclick="$(\'#CityIs\').remove();$(\'.modal-overlay\').remove();return false;">Да</a></div>';
+	p_form += '<div class="btn"><a onclick="$(\'#CityIs\').remove();$(\'.modal-overlay\').remove();setTimeout(regions, 180)">Нет</a></div>';
+	p_form += '</div>';
+	p_form += '</div>';
+	p_form += '<div class="modal-overlay"></div>';
+	$('body')
+		.append(p_form);
+}
+
+
+// виджет локаций
+$(function () {
+	var timeoutFilterMap;
+	$('.location-tab__item').on('click', function () {
+		var wrapper = $(this).closest('.location-widget__tabs'),
+			filterInput = $(this).closest('.location-widget').find('.location-filter__input');
+		wrapper.find('.location-tab__item').removeClass('active');
+		wrapper.find('.location-tab__content').removeClass('active');
+
+		$(this).addClass('active');
+		var key = $(this).data('id');
+		wrapper.find('.location-tab__content-' + key).addClass('active');
+	});
+
+
+	$.expr[':'].icontains = function(obj, index, meta) {
+		return $(obj).text().toUpperCase().indexOf(meta[3].toUpperCase()) >= 0;
+	};
+	$('.location-filter__input').on('keyup', function(e) {
+		var value = $(this).val();
+		if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+			return false;
+		}
+
+		if(value){
+			$.each($('.location-list__item'), function () {
+				var countFiltered = $(this).find('.item-filtered:icontains(' + value + ')').length;
+
+				if(countFiltered > 0){
+					$(this).closest('.location-list__item').show();
+				} else {
+					$(this).closest('.location-list__item').hide();
+				}
+			});
+		} else {
+			$('.location-list__item').show();
+		}
+
+		clearTimeout(timeoutFilterMap);
+		timeoutFilterMap = setTimeout(function () {			
+			setObjectsOnMap(value);
+		}, 800);
+	});
+});
+
+var map;
+function yaMapInit(){
+	ymaps.ready(function () {
+		map = new ymaps.Map('map', {
+			center: [56.838011, 60.597474],
+			zoom: 13,
+			behaviors: ['default', 'scrollZoom']
+		}, {
+			maxZoom: 18,
+			searchControlProvider: 'yandex#search'
+		});
+		
+		setObjectsOnMap();
+	});
+}
+
+function initMap(coordsFilter) {
+	var defaultCoords = coords.length ? prepareCoords(coords[0].coords) : {lat: 56.8364331, lng: 60.6005204};
+	if (typeof coordsFilter != "undefined") {
+		var tempCoords = coords;
+		coords = coordsFilter;		
+	}
+	var map = new google.maps.Map(document.getElementById("map"), {
+		center: coords.length ? prepareCoords(coords[0].coords) : defaultCoords, 
+		zoom: 11,
+	});
+	
+	$.each(coords, function(index, value){
+		window.markers[index] = new google.maps.Marker({
+			position: prepareCoords(value.coords),
+			map: map,
+			icon: {
+				url: baseURL + "img/icon1.png",
+				scaledSize: new google.maps.Size(50, 50)
+			}
+		});
+
+		if(value.content){
+			var infowindow = new google.maps.InfoWindow({
+				content: value.content
+			});
+
+			window.markers[index].addListener("click", function() {
+				$.each(window.infoWindows, function (i) {
+					window.infoWindows[i].close();
+				});
+				infowindow.open(map, window.markers[index]);
+			});
+
+			window.infoWindows[index] = infowindow;
+		}
+	});
+		
+	if (typeof tempCoords != "undefined") {
+		coords = tempCoords;
+		
+	}					
+	
+	function prepareCoords(data){
+		data.lat = parseFloat(data.lat);
+		data.lng = parseFloat(data.lng);
+		return data;
+	}
+}
+$(document).ready(function () {
+	if	(typeof googleMapFlag != 'undefined') {
+		initMap();
+	}	
+});
+
+
+function setObjectsOnMap(filter) {
+	
+	if	(typeof googleMapFlag != 'undefined') {
+		var points = _mapGetPointsFiltered(filter);		
+		initMap(points);
+		
+	}else if (typeof yandexMapFlag != 'undefined') {
+		var clusterer = new ymaps.Clusterer({
+			preset: 'islands#invertedDarkBlueClusterIcons',
+			groupByCoordinates: false,
+			clusterDisableClickZoom: true,
+			clusterHideIconOnBalloonOpen: false,
+			geoObjectHideIconOnBalloonOpen: false
+		});
+
+		var points = _mapGetPointsFiltered(filter);
+		$.each(points, function (i, val) {
+			var coords = val['coords'].split(',');
+			if(parseFloat(coords[0]) && parseFloat(coords[1])){
+				var placeMark = new ymaps.Placemark([parseFloat(coords[0]), parseFloat(coords[1])], _mapGetPointData(i), _mapGetPointOptions(i));
+				clusterer.add(placeMark);
+			}
+		});
+
+		map.geoObjects.removeAll();
+		if(clusterer.getGeoObjects().length){
+			map.geoObjects.add(clusterer);
+
+			map.setBounds(clusterer.getBounds(), {
+				checkZoomRange: true
+			});
+		}
+	}
+
+}
+
+function _mapGetPointsFiltered(filter){
+	filter = filter || '';
+	filter = filter.toLowerCase();
+	if (typeof googleMapFlag != 'undefined') {		
+		var data = coords, newData = {};
+	}else {
+		var data = locationsObj, newData = {};
+	}
+	if(filter){
+		
+		var fields = ['title', 'address', 'metro'],
+			flag;
+		$.each(data, function (i, val) {
+			flag = false;
+			for(var _i = 0; _i <= fields.length - 1; _i++){
+				if(val[fields[_i]].toLowerCase().indexOf(filter) !== -1){
+					flag = true;
+					break;
+				}
+			}
+			if(flag){
+				newData[i] = val;
+			}
+		});
+
+		data = newData;
+	}	
+	return data;
+}
+
+function _mapGetObjectById(id) {
+	if(typeof locationsObj[id] != 'undefined'){
+		return locationsObj[id];
+	}
+
+	return null;
+}
+
+function _mapGetPointData(index) {
+	var object = _mapGetObjectById(index);
+	if(!object){
+		return  {};
+	}
+	var content = '<div class="map-item__wrapper">',
+		title = typeof object['link'] != 'undefined'? '<a href="' + object['link'] + '">' + object['title'] + '</a>' : object['title'];
+
+	content += '<div class="map-item__title"><span>' + title + '</span></div>';
+	if(typeof object['address'] != 'undefined' && object['address']){
+		content += '<div class="map-item__address"><span class="title">Адрес:</span> <span class="value">' + object['address'] + '</span></div>';
+	}
+	if(typeof object['metro'] != 'undefined' && object['metro']){
+		content += '<div class="map-item__metro"><span class="title">Метро:</span> <span class="value">' + object['metro'] + '</span></div>';
+	}
+	if(typeof object['work_time'] != 'undefined' && object['work_time']){
+		content += '<div class="map-item__work-time"><span class="title">Время работы:</span> <span class="value">' + object['work_time'] + '</span></div>';
+	}
+
+	content += '</div>';
+
+	return {
+		balloonContentBody: content,
+		clusterCaption: '<strong>' + object['title'] + '</strong>'
+	};
+}
+
+function _mapGetPointOptions(index) {
+	var object = _mapGetObjectById(index);
+	if(!object){
+		return  {};
+	}
+
+	return {
+		preset: 'islands#darkBlueDotIcon'
+		//iconLayout: '/img/icon1.png',
+		// Размеры метки.
+		//iconImageSize: [50, 50],
+		//iconImageOffset: [-25, -25]
+	}
+}
+
+var mobileMenu = function(){
+	if ($(window).width() < 981) {
+		$('.lh_menu ul li a').on('click', function(){
+			if($(this).closest('li').find('ul.submenu').length > 0) {
+				if(!$(this).hasClass('clicked')) {
+					$(this).closest('li').find('ul.submenu').slideToggle(250);
+					$(this).addClass('clicked');
+					return false;
+				}
+			}
+		});
+	}
+}

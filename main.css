@@ -1,0 +1,239 @@
+.container {
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 15px;
+}
+
+body {
+    margin: 0pc;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.header__logo {
+    height: 200px;
+}
+
+.header__bottom {
+    background: #0066f5;
+}
+
+.header__nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.header__nav-item {
+    color: #fafafa;
+    text-decoration: none;
+    font-size: 22px;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 30px;
+}
+
+.header__nav-item:hover {
+    background: rgb(65, 99, 164);
+}
+
+.header__title {
+    font-size: 16px;
+    color: #010000;
+    font-weight: 700;
+    width: fit-content;
+    margin-left: 20px;
+}
+
+.header__top {
+    display: flex;
+    padding-block: 20px;
+}
+
+.main__card {
+    padding: 50px 30px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+
+}
+
+.content-half {
+    display: grid;
+    grid-template-columns: 10fr 10fr;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+}
+
+.card__img {
+    height: 170px;
+    width: 100%;
+}
+
+.card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card__title {
+    font-size: 28px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.gallery__card {
+    background: #e2dfdf;
+    padding: 20px;
+    border-radius: 15px;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.gallery__card:hover {
+    scale: 1.05;
+    transition: all 0.25s;
+}
+
+.card__btm {
+    text-align: center;
+    display: block;
+    background: #5f5e5e;
+    font-size: 22px;
+    margin-top: 20px;
+    color: #fff;
+    font-weight: uppercase;
+    text-decoration: none;
+    border-radius: 15px;
+    padding: 10px;
+    letter-spacing: 1px;
+}
+
+.footer {
+    background: #fafafa;
+    padding-block: 50px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+    border: 1px solid #f7d358;
+    padding: 0.5em;
+    border: 1px solid #f7d358;
+    padding: 0.5em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    border-width: 2px;
+  }
+
+.form__item span {
+    text-transform: uppercase;
+    color: gray;
+    font-weight: 600;
+  }
+
+.form__item input {
+    font-size: 22px;
+    border: none;
+    border: 2px solid black;
+    padding: 7px 0;
+    border-bottom: 3px solid plum;
+  }
+
+.form__item input:focus {
+    border-top: none;
+    border-left: none;
+    border-top: none;
+  }
+
+.form {
+    display: grid;
+    gap: 25ssspx;
+  }
+
+.checkbox__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+.checkbox__item input[type="checkbox"] {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2 solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+.checkbox__item input[type="checkbox"]:checked::after {
+    content: "☺";
+    position: absolute;
+    color: #7c48a1;
+        top: -2px;
+        left: -2px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        font-size: 21px;
+        line-height: 17px;
+        box-sizing: border-box;
+    }
+
+.checkbox__item span {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.radio__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+.radio__item input[type="radio"] {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2 solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+.radio__item input[type="radio"]:checked:s:after {
+    content: "☺";
+    position: absolute;
+    color: #7c48a1;
+        top: -2px;
+        left: -2px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        font-size: 21px;
+        line-height: 17px;
+        box-sizing: border-box;
+    }
+
+.radio__item span {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.checkbox__item:hover {
+    background-color: #7c48a1;
+}
